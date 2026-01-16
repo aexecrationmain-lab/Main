@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al & Marie</title>
+<link href='https://fonts.googleapis.com/css?family=Pinyon Script' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+* {
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+ul li {
+  float: right;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 20px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: black;
+}
+
+body, html {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-image {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.7) 0%, rgba(45, 45, 45, 0.7) 50%, rgba(26, 26, 26, 0.7) 100%), url('Wed.jpg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.hero-text {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  color: #faf1e1;
+  width: 100%;
+  padding: 20px;
+  animation: fadeInDown 1s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(212, 165, 116, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  top: -100px;
+  right: -100px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(30px);
+  }
+}
+
+h1 {
+  color: #faf1e1;
+  font-family: 'Pinyon Script', cursive;
+  font-size: 400%;
+  font-style: italic;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+}
+
+.hero-text p {
+  font-size: 28px;
+  margin-top: 10px;
+  color: #d4a574;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-style: italic;
+}
+
+h2 {
+  color: #333333;
+  font-family: 'Pinyon Script', cursive;
+  font-size: 50px;
+  text-align: center;
+  margin: 40px 0 20px 0;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+.music-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 0;
+}
+
+.music-icon {
+  font-size: 50px;
+  color: #faf1e1;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.music-icon:hover {
+  color: #d4a574;
+}
+
+.music-icon.playing {
+  color: #d4a574;
+}
+
+.countdown-container {
+  background-color: transparent;
+  padding: 20px 0;
+  border-radius: 0;
+  max-width: none;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  width: 100%;
+}
+
+.countdown-title {
+  color: #faf1e1;
+  font-family: 'Pinyon Script', cursive;
+  font-size: 14px;
+  margin: 0 0 8px 0;
+  display: none;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.countdown-box {
+  background-color: rgba(51, 51, 51, 0.8);
+  padding: 10px 12px;
+  border-radius: 6px;
+  min-width: 50px;
+}
+
+.countdown-number {
+  color: #d4a574;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.countdown-label {
+  color: #faf1e1;
+  font-size: 8px;
+  margin: 2px 0 0 0;
+  text-transform: uppercase;
+}
+
+.section {
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-section {
+  background-color: #f9f7f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-section > p {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.event-section {
+  background-color: white;
+}
+
+.rsvp-section {
+  background-color: #f9f7f4;
+}
+
+.event-details {
+  background-color: white;
+  border-left: 4px solid #d4a574;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.event-details h3 {
+  color: #333333;
+  margin-top: 0;
+}
+
+.event-details p {
+  color: #666666;
+  margin: 10px 0;
+}
+
+.rsvp-button {
+  display: inline-block;
+  background-color: #333333;
+  color: #faf1e1;
+  padding: 15px 40px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.rsvp-button:hover {
+  background-color: #d4a574;
+}
+
+.footer {
+  background-color: #333333;
+  color: #faf1e1;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+audio {
+  display: none;
+}
+
+.countdown-music-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
+.music-container {
+  position: relative;
+}
+
+.countdown-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  max-width: none;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d4a574, transparent);
+  margin: 40px 0;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #faf1e1;
+  font-size: 24px;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+.hero-image {
+  position: relative;
+}
+  </style>
+  </head>
+  <body>
+    <ul>
+      <li><a href="#rsvp">RSVP</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+ 
+    <div class="hero-image">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="decorative-line"></div>
+          <h1>Al & Marie</h1>
+          <p style="font-size: 28px; margin-top: 10px;">Two hearts, one love, forever</p>
+          <div class="decorative-line"></div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+
+    <div id="about" class="section about-section">
+      <h2>Our Story</h2>
+      <p>Welcome to our wedding website! We're so excited to share this special day with you. Al and Marie's love story began with a chance meeting and has blossomed into a beautiful journey together. We can't wait to celebrate our love surrounded by the people we cherish most.</p>
+
+      <div class="music-container">
+        <i class="fas fa-music music-icon" id="music-icon"></i>
+        <audio id="background-music" autoplay>
+          <source src="music1.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <div class="countdown-music-wrapper">
+        <div class="countdown-container">
+          <div class="countdown-title">Time Until Our Big Day</div>
+          <div class="countdown-timer">
+            <div class="countdown-box">
+              <p class="countdown-number" id="days">0</p>
+              <p class="countdown-label">Days</p>
+            </div>
+            <div class="countdown-box">
+              <p class="countdown-number" id="hours">0</p>
+              <p class="countdown-label">Hours</p>
+            </div>
+            <div class="countdown-box">
+              <p class="countdown-number" id="minutes">0</p>
+              <p class="countdown-label">Minutes</p>
+            </div>
+            <div class="countdown-box">
+              <p class="countdown-number" id="seconds">0</p>
+              <p class="countdown-label">Seconds</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div id="events" class="section event-section">
+      <h2>Events</h2>
+      
+      <div class="event-details">
+        <h3>💒 Wedding Ceremony</h3>
+        <p><strong>Date:</strong> TBA</p>
+        <p><strong>Time:</strong> TBA</p>
+        <p><strong>Location:</strong> TBA</p>
+        <p>Join us as we exchange vows and celebrate our commitment to each other.</p>
+      </div>
+
+      <div class="event-details">
+        <h3>🍽️ Reception</h3>
+        <p><strong>Date:</strong> TBA</p>
+        <p><strong>Time:</strong>TBA</p>
+        <p><strong>Location:</strong> TBA</p>
+        <p>An evening of celebration, delicious food, and dancing with our loved ones.</p>
+      </div>
+
+     
+
+    <div class="divider"></div>
+
+    <div id="rsvp" class="section rsvp-section">
+      <h2>RSVP</h2>
+      <p>Your presence is the greatest gift we could ask for. Please let us know if you can join us by <strong>TBA</strong>.</p>
+      <p> plus-one details can be included in the RSVP form.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdpMW3oKOXFbuchnR2IQgRtgD_RC2dbGMj2g27-GsraJC_jmQ/viewform?usp=publish-editor" class="rsvp-button">RSVP Now</a>
+    </div>
+
+    <div class="footer">
+      <p> 2026 Al & Marie Wedding. </p>
+      <p>Made with <i class="fas fa-heart" style="color: #d4a574;"></i> for our special day</p>
+    </div>
+
+    <script>
+      const icon = document.getElementById('music-icon');
+      const audio = document.getElementById('background-music');
+      const musicFiles = ['1.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3', '6.mp3', '7.mp3'];
+      let currentMusicIndex = -1;
+
+      // Select a random music file
+      function getRandomMusic() {
+        currentMusicIndex = Math.floor(Math.random() * musicFiles.length);
+        return musicFiles[currentMusicIndex];
+      }
+
+      // Play next music file
+      function playNextMusic() {
+        currentMusicIndex = (currentMusicIndex + 1) % musicFiles.length;
+        audio.src = musicFiles[currentMusicIndex];
+        audio.currentTime = 0;
+        audio.play().catch(() => {
+          // Autoplay blocked by browser
+        });
+      }
+
+      // Set random music file on load
+      audio.src = getRandomMusic();
+
+      // When music ends, play the next one
+      audio.addEventListener('ended', playNextMusic);
+
+      // Autoplay music when page loads
+      window.addEventListener('load', () => {
+        // Set playback position to start on load
+        audio.addEventListener('loadedmetadata', () => {
+          audio.currentTime = 0;
+          // Attempt to play
+          audio.play().catch(() => {
+            // Autoplay blocked by browser, will play on first user interaction
+          });
+        }, { once: true });
+        
+        // If already loaded, set position to start immediately
+        if (audio.readyState >= 1) {
+          audio.currentTime = 0;
+          audio.play().catch(() => {
+            // Autoplay blocked by browser, will play on first user interaction
+          });
+        }
+      });
+
+      // Unmute on first user interaction
+      document.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+        }
+        if (audio.muted) {
+          audio.muted = false;
+          icon.classList.add('playing');
+        }
+      });
+
+      icon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (audio.muted) {
+          audio.muted = false;
+          icon.classList.add('playing');
+        } else {
+          audio.muted = true;
+          icon.classList.remove('playing');
+        }
+      });
+
+      // Wedding Countdown
+      function updateCountdown() {
+        const weddingDate = new Date('2026-06-15T00:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+          document.querySelector('.countdown-title').textContent = "We're Married!";
+          document.getElementById('days').textContent = 0;
+          document.getElementById('hours').textContent = 0;
+          document.getElementById('minutes').textContent = 0;
+          document.getElementById('seconds').textContent = 0;
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+
+  </body>
+
+</html>
